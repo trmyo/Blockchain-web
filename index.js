@@ -45,11 +45,11 @@ class Blockchain {
     }
 
     getLastBlockindex() {
-        return this.blockchain.at(-1).index
+        return this.blockchain[this.blockchain.length -1].index;
     }
 
     getLastBlockHash() {
-        return this.blockchain.at(-1).currHash
+        return this.blockchain[this.blockchain.length -1].currHash;
     }
 }
 
@@ -74,6 +74,10 @@ app.post("/", (req, res) => {
     blockchain.addNewBlock(req.body.data)
     res.render('index', {blockchain: blockchain.blockchain})
 })
+
+app.listen(3000, () => {
+    console.log("Hey, the port is up and running. connect to http://localhost:3000")
+});
 
 app.listen(3000, () => {
     console.log("Hey, the port is up and running. connect to http://localhost:3000")
